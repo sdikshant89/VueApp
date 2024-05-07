@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- The vue app will control everything whatever is inside this div tag ONLY and won't be 
+        controlling any other elements which are outside the div tag because they dont have the app as their ID -->
+    <div id="app">
+      <label class="switch">
+        <input type="checkbox" id="mySwitch" @click="switchChange" />
+        <span class="slider"></span>
+
+        <!-- instead of if else, v-show could also be used with a function that returns bool or a bool variable -->
+        <!-- The different lies about how it works, the if-else removes the component while the show hides and show the component in the dom -->
+        <!-- show should be the one to go because if there's a bigger component it would take alot of resources 
+            to rerender the whole thing thats why one should use v-show directive more often with big components -->
+
+        <div style="width: 300px" v-if="!visible">Show</div>
+        <div style="width: 300px" v-else>Hide</div>
+      </label>
+
+      <div v-if="visible">
+        <h2>{{ greeting }}</h2>
+        <p>Number: {{ number }}</p>
+      </div>
+
+      <!-- instead of using v-on:click, shortcut of vue is @ which replaces the whole v-on: part -->
+      <button @click="incNumber">Inc Number</button>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
